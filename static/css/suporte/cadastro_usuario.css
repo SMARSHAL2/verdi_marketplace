@@ -1,0 +1,204 @@
+.suporte-titulo {
+  color: var(--verdi-primaria);
+  font-family: var(--Poppins);
+  font-weight: var(--font-semibold);
+  font-size: 2.5rem;
+  margin-bottom: 4rem;
+  margin-top: 2rem;
+}
+
+/* 🌿 Container principal de cadastro */
+.suporte-cadastro-container {
+  background: #ffffff;
+  border: 1px solid var(--verdi-secundaria, #c2e0f4);
+  border-radius: 12px;
+  padding: 3rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  max-width: 1900px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* 🌿 Alerta de mensagens */
+.suporte-alerta {
+  font-size: 0.95rem;
+  padding: 0.8rem 1.2rem;
+  margin-bottom: 1.5rem;
+  border-radius: 6px;
+}
+
+/* 🌿 Grupos de campos */
+.suporte-cadastro {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.suporte-cadastro-senha {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-end;
+  margin-bottom: 2rem;
+}
+
+/* 🌿 Inputs e selects */
+.suporte-form-floating {
+  flex: 1;
+  position: relative;
+}
+
+.suporte-form-floating label {
+  position: absolute;
+  color: var(--verdi-texto-label, #6C737F);
+  left: 0;
+  margin-left: 13px;
+  margin-top: 8px;
+  font-family: var(--Inter);
+  font-weight: var(--font-regular);
+  font-size: 14px;
+}
+
+.suporte-form-control,
+.suporte-form-select {
+  width: 100%;
+  font-size: 1rem;
+  border: 1px solid var(--verdi-borda-input);
+  border-radius: 8px;
+  background-color: transparent;
+  color: var(--verdi-texto-label);
+  transition: border-color 0.3s ease;
+  height: 72px;
+  padding-top: 25px;
+  padding-left: 13px
+}
+
+.suporte-form-control label {
+  color: var(--verdi-text-input)
+}
+
+.suporte-form-select {
+  padding-left: 12px;
+  font-family: var(--Inter);
+  font-weight: var(--font-regular);
+  font-size: 14px;
+  color: var(--verdi-texto-label, #6C737F);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 2.5rem;
+}
+
+/* 🌿 Ícone substituto da seta */
+.suporte-select-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 1rem;
+  color: var(--verdi-texto-label, #6C737F);
+}
+
+.suporte-form-control:focus,
+.suporte-form-select:focus {
+  border-color: var(--verdi-primaria);;
+  box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.1);
+  outline: none;
+}
+
+.suporte-form-control::placeholder,
+.suporte-form-select::placeholder {
+  font-family: var(--Inter);
+  font-weight: var(--font-regular);
+  font-size: 14px;
+  color: var(--verdi-texto-label, #6C737F);
+}
+
+.suporte-cadastro-senha {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: flex-end; 
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+/* 🌿 Botões */
+.suporte-botao {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 2rem;
+}
+
+/* 🌿 Ícone do olho */
+.verdi-eye-toggle {
+  position: absolute;
+  top: 50%;
+  right: 20px;
+  transform: translateY(-50%);
+  cursor: pointer;
+  z-index: 10;
+  color: #888;
+}
+
+/* 🌿 Botões principais e de voltar */
+.suporte-botao-submit,
+.suporte-botao-voltar {
+  background-color: var(--verdi-primaria);
+  border: none;
+  font-weight: 600;
+  color: var(--verdi-branco);
+  padding: 0.6rem 1.5rem;
+  font-size: 1rem;
+  border-radius: 6px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  transition: background-color 0.3s ease, color 0.3s ease;
+  margin-top: 50px;
+}
+
+/* 🌿 Hover */
+.suporte-botao-submit:hover,
+.suporte-botao-voltar:hover {
+  background-color: var(--verdi-terciaria);
+  color: var(--verdi-branco);
+}
+
+/* 🌿 Ícones nos botões */
+.suporte-botao-submit i,
+.suporte-botao-voltar i {
+  font-size: 1.1rem;
+  font-weight: var(--font-semibold) !important;
+  margin-right: 5px;
+  color: inherit;
+}
+
+.suporte-outline-secondary {
+  height: 72px;
+  width: 100%;
+  border: 1px solid var(--verdi-primaria);
+  color: var(--verdi-primaria);
+  text-decoration: none;
+  font-family: var(--Inter);
+  font-weight: var(--font-semibold);
+  transition: color 0.3s ease;
+  border-radius: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.4rem;
+}
+
+.suporte-outline-secondary:hover {
+  color: var(--verdi-branco);
+  background-color: var(--verdi-primaria);
+}
+
+.suporte-outline-secondary i {
+  font-size: 20px;
+  font-weight: var(--font-semibold) !important;
+}

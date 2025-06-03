@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Painel de Suporte{% endblock %}
+
+{% block content %}
+<div class="container mt-5 suporte-dashboard">
+    <h2 class="mb-4 text-center suporte-titulo">Painel de Suporte</h2>
+
+    <div class="row mb-5 suporte-cards">
+        <div class="col-md-4">
+            <div class="card text-center suporte-card shadow-sm">
+                <div class="card-body">
+                    <i class="bi bi-people fs-1 text-success"></i>
+                    <h5 class="card-title mt-2">Usuários</h5>
+                    <p class="card-text fs-4">{{ total_usuarios }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center suporte-card shadow-sm">
+                <div class="card-body">
+                    <i class="bi bi-shop fs-1 text-warning"></i>
+                    <h5 class="card-title mt-2">Vendedores</h5>
+                    <p class="card-text fs-4">{{ total_vendedores }}</p>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="card text-center suporte-card shadow-sm">
+                <div class="card-body">
+                    <i class="bi bi-bag-check fs-1 text-primary"></i>
+                    <h5 class="card-title mt-2">Vendas</h5>
+                    <p class="card-text fs-4">{{ total_vendas }}</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

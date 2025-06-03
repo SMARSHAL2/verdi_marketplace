@@ -1,0 +1,100 @@
+.verdi-sidebar {
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 400px;
+  height: 100vh;
+  background-color: var(--verdi-primaria);
+  color: var(--verdi-branco);
+  box-shadow: -2px 0 10px rgba(0, 0, 0, 0.15);
+  padding: 1rem 1.5rem;
+  z-index: 10080;
+  transition: right 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.verdi-sidebar.ativo {
+  right: 0;
+}
+
+/* Botão de fechar no topo direito */
+.verdi-sidebar-close {
+  position: absolute;
+  top: 0.5rem;
+  left: 0.5rem;
+  background: none;
+  border: none;
+  color: var(--verdi-branco);
+  font-size: 1.6rem;
+  cursor: pointer;
+}
+
+/* Espaço reservado para o botão de fechar */
+.verdi-sidebar-header {
+  width: 100%;
+  height: 2rem;
+  position: relative;
+}
+
+.img-sidebar {
+  width: 100%;
+  text-align: center;
+  padding-left: 1.5rem;
+  padding-top: 2rem;
+  padding-bottom: 1rem;
+}
+
+.verdi-logo-img-sidebar {
+  max-height: 220px;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+/* Navegação vertical */
+.verdi-sidebar-nav {
+  width: 100%;
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding-left: 1rem;
+}
+
+.verdi-sidebar-nav a,
+.verdi-sidebar-sair-container a {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  margin: 0.5rem 0;
+  font-weight: 500;
+  text-decoration: none;
+  color: var(--verdi-branco);
+  font-family: var(--Inter);
+}
+
+
+.verdi-sidebar-nav a:hover,
+.verdi-sidebar-sair-container a:hover {
+  color: var(--verdi-destaque);
+}
+
+.verdi-sidebar-nav a:hover i,
+.verdi-sidebar-sair-container a:hover i {
+  color: var(--verdi-destaque);
+}
+
+
+.verdi-link-sidebar i {
+    color: var(--verdi-branco);
+    font-size: 26px;
+    margin-right: 5px;
+}
+
+.verdi-sidebar-sair-container {
+  width: 100%;
+  padding-bottom: 1.5rem;
+  padding-left: 1rem;
+  bottom: 0;
+}

@@ -1,0 +1,86 @@
+/* 🌿 Estilo principal do footer */
+.verdi-footer {
+  background-color: var(--verdi-fundo2, #198754);
+  color: var(--verdi-branco);
+  padding-top: 2.5rem;
+}
+
+.verdi-footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+}
+
+.verdi-footer-identidade {
+  display: flex;
+  align-items: center;
+}
+
+.verdi-footer-logo {
+  position: relative;
+  max-height: 90px;
+  width: auto;
+  flex-shrink: 0;
+  display: block;
+  margin-left: -2rem;
+  margin-top: -25px;
+  margin-right: -1.3rem;
+  margin-bottom: -20px;
+}
+
+/* 🌿 Títulos e textos */
+.verdi-footer-titulo {
+  font-family: var(--Poppins);
+  font-weight: var(--font-bold);
+  font-size: 1.5rem;
+  margin-bottom: -0.6rem;
+  margin-top: -20px;
+}
+
+.verdi-footer-subtitulo {
+  font-family: var(--Poppins);
+  font-weight: var(--font-semibold);
+  margin-bottom: 1rem;
+}
+
+.verdi-footer-texto,
+.verdi-footer-copy,
+.verdi-footer-contato {
+  font-family: var(--Inter);
+  font-size: 0.95rem;
+  margin-bottom: 0.3rem;
+  color: var(--verdi-branco);
+}
+
+.verdi-footer-copy {
+  font-size: 0.8rem;
+  opacity: 0.8;
+}
+
+/* 🌿 Links */
+.verdi-footer-links {
+  padding-left: 0;
+}
+
+.verdi-footer-link {
+  color: var(--verdi-branco);
+  text-decoration: none;
+  font-size: 0.95rem;
+  display: block;
+  margin-bottom: 0.4rem;
+  transition: opacity 0.3s;
+}
+
+.verdi-footer-link:hover {
+  opacity: 0.8;
+}
+
+/* 🌿 Ícones das redes sociais */
+.verdi-footer-icon {
+  font-size: 1.2rem;
+  color: var(--verdi-branco);
+  transition: opacity 0.3s ease;
+}
+
+.verdi-footer-icon:hover {
+  opacity: 0.7;
+}

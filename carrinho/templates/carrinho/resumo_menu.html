@@ -1,0 +1,18 @@
+<div class="verdi-carrinho-menu-dropdown">
+    {% for item in itens %}
+        <div class="verdi-carrinho-menu-item">
+            <span class="verdi-carrinho-item-nome">{{ item.produto.nome }}</span>
+            <span class="verdi-carrinho-item-quantidade">x{{ item.quantidade }}</span>
+            <span class="verdi-carrinho-item-preco">R$ {{ item.total_item }}</span>
+        </div>
+    {% empty %}
+        <p class="verdi-carrinho-vazio">Seu carrinho está vazio.</p>
+    {% endfor %}
+    <div class="verdi-carrinho-total-menu">
+        <strong>Total: R$ {{ total_final }}</strong>
+    </div>
+    <div class="verdi-carrinho-botoes-menu">
+        <a href="{% url 'carrinho' %}" class="verdi-btn-menu-carrinho">Ver Carrinho</a>
+        <a href="{% url 'pagamento' %}" class="verdi-btn-menu-pagamento">Finalizar Compra</a>
+    </div>
+</div>

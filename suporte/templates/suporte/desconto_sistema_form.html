@@ -1,0 +1,15 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+<div class="suporte-desconto-editar-container">
+    <h2>Editar Promoção: "{{ promocao.nome }}"</h2>
+
+    <form method="post" class="suporte-form">
+        {% csrf_token %}
+        {{ form.as_p }}
+        <button type="submit" class="suporte-btn">Salvar Alterações</button>
+        <a href="{% url 'desconto_sistema' %}" class="suporte-btn-voltar">Cancelar</a>
+    </form>
+</div>
+{% endblock %}

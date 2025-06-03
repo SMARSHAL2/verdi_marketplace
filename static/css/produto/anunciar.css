@@ -1,0 +1,315 @@
+.anunciar-titulo {
+    color: var(--verdi-primaria);
+    font-family: var(--Poppins);
+    font-weight: var(--font-semibold);
+    font-size: 2.5rem;
+    margin-bottom: 4rem;
+    margin-top: 2rem;
+}
+
+/* 🌿 Container principal de cadastro */
+.anunciar-container {
+    background: #ffffff;
+    border: 1px solid var(--verdi-secundaria, #c2e0f4);
+    border-radius: 12px;
+    padding: 3rem;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    max-width: 1400px;
+    width: 100%;
+    margin: 0 auto;
+}
+
+/* 🌿 Inputs e selects */
+.anunciar-form-floating {
+    flex: 1;
+    position: relative;
+    margin-bottom: 20px;
+}
+
+.anunciar-select-form-floating {
+    flex: 1;
+    position: relative;
+    margin-top: 20px;
+    margin-bottom: 50px;
+}
+
+.anunciar-form-floating label,
+.anunciar-select-form-floating label {
+    position: absolute;
+    color: var(--verdi-texto-label, #6C737F);
+    left: 0;
+    margin-left: 13px;
+    margin-top: 8px;
+    font-family: var(--Inter);
+    font-weight: var(--font-regular);
+    font-size: 14px;
+}
+
+.anunciar-form-control,
+.anunciar-form-select {
+    width: 100%;
+    font-size: 1rem;
+    border: 1px solid var(--verdi-borda-input);
+    border-radius: 8px;
+    background-color: transparent;
+    color: var(--verdi-texto-label);
+    transition: border-color 0.3s ease;
+    height: 72px;
+    padding-top: 25px;
+    padding-left: 13px
+}
+
+.anunciar-form-control label {
+    color: var(--verdi-text-input)
+}
+
+.anunciar-form-select {
+    padding-left: 12px;
+    font-family: var(--Inter);
+    font-weight: var(--font-regular);
+    font-size: 14px;
+    color: var(--verdi-texto-label, #6C737F);
+    appearance: none;
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    padding-right: 2.5rem;
+}
+
+/* 🌿 Ícone substituto da seta */
+.anunciar-form-icon {
+    position: absolute;
+    right: 15px;
+    top: 50%;
+    transform: translateY(-50%);
+    pointer-events: none;
+    font-size: 1rem;
+    color: var(--verdi-texto-label, #6C737F);
+}
+
+.anunciar-form-control:focus,
+.anunciar-form-select:focus {
+    border-color: var(--verdi-primaria);
+    ;
+    box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.1);
+    outline: none;
+}
+
+.anunciar-form-control::placeholder,
+.anunciar-form-select::placeholder {
+    font-family: var(--Inter);
+    font-weight: var(--font-regular);
+    font-size: 14px;
+    color: var(--verdi-texto-label, #6C737F);
+}
+
+/* Texto e nome */
+.upload-text {
+    font-weight: 600;
+    color: #147864;
+    font-size: 15px;
+}
+
+.upload-filename {
+    font-size: 14px;
+    color: #666;
+    font-style: italic;
+    margin-top: 4px;
+}
+
+/* Hover */
+.avaliacao-upload-label:hover {
+    background-color: #e1f5f0;
+    border-color: #147864;
+}
+
+
+.upload-hidden-input {
+    display: none;
+}
+
+.upload-label-box {
+    cursor: pointer;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    width: 100%;
+    padding: 1rem;
+    border: 1px solid #E9EAEB;
+    border-radius: 10px;
+    transition: border-color 0.3s, background-color 0.3s;
+}
+
+.upload-icon-main {
+    width: 60px;
+    height: 60px;
+    border-radius: 50%;
+    background-color: #F5F5F5 !important;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: background-color 0.3s;
+    margin-bottom: 0.5rem;
+    box-shadow: 0 0 0 6px #FAFAFA !important;
+}
+
+.upload-icon-main i {
+    font-size: 30px !important;
+    color: var(--verdi-texto-label) !important;
+}
+
+.upload-label-box:hover .upload-icon-main i {
+    color: var(--verdi-primaria) !important;
+}
+
+.upload-label-box:hover {
+    border-color: var(--verdi-primaria);
+    box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.2);
+    outline: none;
+}
+
+.upload-main-text strong {
+    color: var(--verdi-primaria);
+    font-family: 'Inter', sans-serif
+}
+
+.upload-main-text {
+    color: var(--verdi-texto-label);
+    font-family: 'Inter', sans-serif;
+    font-size: 15px;
+    margin-top: 0.2rem;
+}
+
+.upload-subtext {
+    font-size: 13px;
+    color: #535862;
+    margin-top: 0.5rem;
+    font-family: 'Inter', sans-serif
+}
+
+.upload-display {
+    background: #fff;
+    border: 1px solid var(--verdi-primaria) !important;
+    border-radius: 10px;
+    padding: 1.5rem;
+    margin-top: 1.5rem;
+    text-align: left;
+    position: relative;
+    box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.2);
+    outline: none;
+}
+
+.upload-file-info {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    margin-bottom: 1rem;
+}
+
+.upload-icon-circle {
+    width: 38px;
+    height: 38px;
+    border-radius: 50%;
+    background: #C9EBC6;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 0 0 6px #E3F5E0;
+}
+
+.upload-icon-circle i {
+    color: var(--verdi-primaria) !important;
+    font-size: 20px !important;
+}
+
+.upload-details {
+    font-family: 'Inter', sans-serif;
+    font-size: 12px;
+    color: #000000;
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+}
+
+.upload-actions {
+    position: absolute;
+    top: 12px;
+    right: 12px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.75rem;
+}
+
+/* Ícone de sucesso */
+.upload-success-icon i {
+    font-size: 18px !important;
+    color: var(--verdi-primaria) !important;
+    /* Verde moderno */
+}
+
+.upload-label-box.dragover {
+    border-color: var(--verdi-primaria);
+    box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.2);
+    outline: none;
+}
+
+.delete-button {
+    background: transparent;
+    border: none;
+    padding: 0;
+    margin: 0;
+    box-shadow: none;
+    outline: none;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    cursor: pointer;
+}
+
+/* Botão de deletar */
+.delete-button i {
+    font-size: 18px !important;
+    color: #6B7280 !important;
+    /* cinza neutro */
+    cursor: pointer;
+    transition: color 0.3s ease;
+}
+
+.delete-button i:hover {
+    color: #dc2626 !important;
+    /* vermelho ao passar o mouse */
+}
+
+.upload-progress-container {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    /* espaço entre barra e % */
+    margin-top: 0.5rem;
+}
+
+.upload-progress-wrapper {
+    flex: 1;
+    height: 10px;
+    border-radius: 6px;
+    overflow: hidden;
+}
+
+.upload-progress-bar {
+    height: 100%;
+    width: 0%;
+    background-color: var(--verdi-fundo2);
+    transition: width 0.4s ease-in-out;
+}
+
+.progress-percent {
+    font-family: 'Inter', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    color: #414651;
+    white-space: nowrap;
+    min-width: 40px;
+    text-align: right;
+}

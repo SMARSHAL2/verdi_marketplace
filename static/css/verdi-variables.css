@@ -1,0 +1,48 @@
+:root {
+    /* 🌿 Paleta base para o site */
+    --verdi-primaria: #2E7D32;
+    --verdi-secundaria: #A5D6A7;
+    --verdi-secundaria-clara: #C8E6C9;
+    --verdi-terciaria: #1C3D2E;
+    --verdi-fundo: #FAF9F6;
+    --verdi-fundo2: #198754;
+    --verdi-texto: #263238;
+    --verdi-subtexto: #607D8B;
+    --verdi-destaque: #FFC107;
+    --verdi-erro: #D32F2F;
+
+    /* 🌿 Paleta padrao para inputs */
+    --verdi-borda-input: #D9DCE1;
+    --verdi-input: #2E7D32;
+    --verdi-texto-label: #6C737F;
+
+    /* 🌿 Paleta fonts */
+    --verdi-branco: #ffffff;
+    --verdi-preto: #000000;
+
+    /* 🌿 Fontes principais */
+    --Poppins: 'Poppins', sans-serif;
+    --Montserrat: 'Montserrat', sans-serif;
+    --Inter: 'Inter', sans-serif;
+    --Lato: 'Lato', sans-serif;
+    --Open-Sans: 'Open Sans', sans-serif;
+
+    /* 🌟 Fontes para destaques/preços */
+    --Rubik: 'Rubik', sans-serif;
+    --font-preco: 'Raleway', sans-serif;
+
+    /* 🌿 Bold */
+    --font-bold: 700;
+    --font-semibold: 600;
+    --font-regular: 400;
+
+    /* 🌿 Suporte */
+    --suporte-roxo-primario: #6A1B9A;
+    --suporte-roxo-secundario: #9C27B0;
+
+    --suporte-fundo: #F8F4FA;
+
+    --suporte-destaque: #AB47BC;
+    --suporte-erro: #E53935;
+    --suporte-sucesso: #43A047;
+}

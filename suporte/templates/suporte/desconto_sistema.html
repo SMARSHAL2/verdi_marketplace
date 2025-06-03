@@ -1,0 +1,141 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+<h1 class="suporte-titulo">Cadastrar Promoção/Desconto do Sistema</h1>
+
+<div class="suporte-desconto-container">
+
+        <form method="post" class="suporte-form">
+            {% csrf_token %}
+
+            <!-- 🌿 Nome da promoção -->
+            <div class="descsistema-form-floating">
+                <label for="id_nome" class="form-label">Nome da promoção</label>
+                <input type="text" name="nome" id="id_nome" class="descsistema-form-control" placeholder="Informe o nome da promocao que deseja criar" value="{{ form.nome.value|default_if_none:'' }}">
+                {% if form.nome.errors %}
+                    <div class="text-danger small">{{ form.nome.errors.0 }}</div>
+                {% endif %}
+            </div>
+
+            <!-- 🌿 Desconto (%) -->
+            <div class="descsistema-form-floating">
+                <label for="id_desconto" class="form-label">Desconto (%)</label>
+                <input type="number" step="0.01" name="desconto" id="id_desconto" class="descsistema-form-control"  placeholder="Informe o valor de desconto" value="{{ form.desconto.value|default_if_none:'' }}">
+                {% if form.desconto.errors %}
+                    <div class="text-danger small">{{ form.desconto.errors.0 }}</div>
+                {% endif %}
+            </div>
+
+            
+            <div class="suporte-cadastro">
+            <!-- 🌿 Data de início -->
+                <div class="col-md-6 descsistema-form-floating">
+                    <label for="id_data_inicio" class="form-label">Data de início</label>
+                    <input type="text" id="id_data_inicio" name="data_inicio" class="descsistema-form-control" placeholder="Escolha uma data inicial">
+                    <i class="bi bi-calendar-event descsistema-icon-calendario"></i>
+                    {% if form.data_inicio.errors %}
+                        <div class="text-danger small">{{ form.data_inicio.errors.0 }}</div>
+                    {% endif %}
+                </div>
+
+                <!-- 🌿 Data de fim -->
+                <div class="col-md-6 descsistema-form-floating">
+                    <label for="id_data_fim" class="form-label">Data de término</label>
+                    <input type="text" name="data_fim" id="id_data_fim" class="descsistema-form-control" placeholder="Escolha uma data final">
+                    <i class="bi bi-calendar-event descsistema-icon-calendario"></i>
+                    {% if form.data_fim.errors %}
+                        <div class="text-danger small">{{ form.data_fim.errors.0 }}</div>
+                    {% endif %}
+                </div>
+            </div>
+
+            <!-- 🌿 Categorias com Select2 -->
+            <div class="tsinput-form-floating">
+            <select id="selectCategorias" name="categorias" class="tomselect" multiple>
+            {% for cat in form.fields.categorias.queryset %}
+                <option value="{{ cat.id }}"
+                {% if cat.id|stringformat:"s" in form.categorias.value|stringformat:"s" %}selected{% endif %}>
+                {{ cat.nome }}
+                </option>
+            {% endfor %}
+            </select>
+                <label for="selectCategorias">Categorias</label>
+            </div>
+
+
+
+            <!-- 🌿 Checkbox: Retroativa -->
+            <div class="descsistema-form-check">
+                <input type="checkbox" name="retroativa" class="form-check-input" id="id_retroativa"
+                    {% if form.retroativa.value %}checked{% endif %}>
+                <label class="form-check-label" for="id_retroativa">Aplicar novamente toda semana</label>
+            </div>
+
+            <!-- 🌿 Checkbox: Ativo -->
+            <div class="descsistema-form-check">
+                <input type="checkbox" name="ativo" class="form-check-input" id="id_ativo"
+                    {% if form.ativo.value %}checked{% endif %}>
+                <label class="form-check-label" for="id_ativo">Promoção ativa</label>
+            </div>
+
+            <div class="suporte-desconto-botao">
+                <a href="{% url 'painel_suporte' %}" class="btn suporte-botao-voltar"><i
+                        class="bi bi-arrow-left"></i>Voltar</a>
+                <button type="submit" class="btn btn-success suporte-botao-submit"><i
+                        class="bi bi-plus-lg"></i>Cadastrar Promoção</button>
+            </div>
+        </form>
+
+
+
+    <div class="promocao-subititulos">
+        <div class="promocao-subtitulos-text">
+            <h3>Promoção Vigente</h3>
+            <h3>Todas as Promoções</h3>
+        </div>
+    </div>
+
+    <div class="suporte-promocoes-wrapper">
+    <!-- 🌿 Coluna da Promoção Vigente -->
+        <div class="promocao-vigente-container">
+            {% for promocao in promocoes_vigentes %}
+                <div class="promocao-vigente-card" id="card-promocao-vigente" data-promocao-id="{{ promocao.id }}">
+                    <input type="checkbox" class="check-promocao-vigente-card"
+                        data-promocao-id="{{ promocao.id }}"
+                        {% if promocao.ativo %}checked{% endif %}>
+                    <p><strong>{{ promocao.nome }}</strong></p>
+                    <p>Desconto: {{ promocao.desconto }}%</p>
+                    <p>Iniciou em: {{ promocao.data_inicio }}</p>
+                    <p>Retroativa: {{ promocao.retroativa|yesno:"Sim,Não" }}</p>
+                </div>
+                {% empty %}
+                <div class="promocao-vigente-card vazio">
+                    <p style="opacity: 0.5;">Nenhuma promoção ativa no momento.</p>
+                </div>
+            {% endfor %}
+
+        </div>
+
+        <!-- 🌿 Coluna da lista de promoções -->
+        <div class="tabela-promocoes-cards-scroll">
+            {% for promo in promocoes %}
+                <div class="card-promocao-scroll">
+                    <input type="checkbox" name="ativo" class="checkbox-ativar-promocao"
+                        data-promocao-id="{{ promo.id }}"
+                        {% if promo.ativo %}checked{% endif %}>
+
+                    <h5><strong>{{ promo.nome }}</strong></h5>
+                    <p>Desconto: {{ promo.desconto }}%</p>
+                    <p>Início: {{ promo.data_inicio }}</p>
+                    <p>Fim: {{ promo.data_fim }}</p>
+                    <p>Retroativa: {{ promo.retroativa|yesno:"Sim,Não" }}</p>
+                    <p>Ativo: {{ promo.ativo|yesno:"Sim,Não" }}</p>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
+</div>
+
+{% endblock %}

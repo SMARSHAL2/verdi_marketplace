@@ -1,0 +1,68 @@
+{% load static %}
+{% include "includes/head.html" %}
+<header class="verdi-header bg-success text-white py-3 px-4">
+    <div class="verdi-header-top d-flex justify-content-between align-items-center">
+
+        {% if user.is_authenticated and user.is_suporte %}
+            <a href="{% url 'painel_suporte' %}" class="verdi-logo">
+                <img src="{% static 'img/verdi-logo/verdi-logo-suporte.png' %}" alt="Verdi Market Suporte" class="verdi-logo-img">
+            </a>
+        {% else %}
+            <a href="{% url 'home' %}" class="verdi-logo">
+                <img src="{% static 'img/verdi-logo/verdi-logo-branco.png' %}" alt="Verdi Market" class="verdi-logo-img">
+            </a>
+        {% endif %}
+        
+        <div class="verdi-menu-busca-carrinho-container">
+            <div class="verdi-menu-form-busca-wrapper position-relative">
+                <input type="text" name="q" class="verdi-menu-form-busca-input" placeholder="Pesquisar..." />
+                <span onclick="this.closest('form').submit()" class="verdi-menu-busca-icon">
+                    <i class="bi bi-search"></i>
+                </span>
+            </div>
+
+        {% if not user.is_suporte %}
+            <div class="verdi-carrinho-wrapper position-relative">
+                <a href="#" id="verdi-menu-botao-carrinho" class="verdi-menu-botao-carrinho">
+                    <i class="bi bi-cart"></i> 
+                    <span class="verdi-carrinho-texto">Carrinho de compras</span>
+                </a>
+                <div id="verdi-menu-carrinho-dropdown" class="verdi-menu-carrinho-dropdown-container" style="display: none;"></div>
+            </div>
+        {% endif %}
+
+
+        </div>
+
+
+        <nav class="verdi-nav">
+            {% if user.is_authenticated %}
+                <span class="verdi-menu-usuario-logado d-none d-md-inline">
+                   👋 Olá, {{ user.first_name|default:user.nome}}
+                </span>
+
+                <div id="abrirSidebar" class="verdi-menu-toggle" role="button" tabindex="0" aria-label="Abrir menu">
+                    <i class="bi bi-list fs-2 text-white"></i>
+                </div>
+
+            {% else %}
+                <a href="{% url 'login' %}" class="verdi-link me-3">Entrar</a>
+                <a href="{% url 'register' %}" class="verdi-btn">Cadastrar</a>
+            {% endif %}
+        </nav>
+    </div>
+
+    <div class="verdi-header-bottom mt-1">
+        {% if user.is_authenticated and user.is_suporte %}
+            <nav class="verdi-menu">
+                <a href="{% url 'home' %}" class="verdi-link me-3">Market</a>
+                <a href="{% url 'painel_suporte' %}" class="verdi-link me-3">Pagina Suporte</a>
+                <a href="{% url 'suporte_cadastro_usuario' %}" class="verdi-link me-3">Cadastrar Usuario</a>
+            </nav>
+        {% else %}
+            <nav class="verdi-menu">
+                <a href="{% url 'home' %}" class="verdi-link me-3">Início</a>
+            </nav>
+        {% endif %}
+    </div>
+</header>

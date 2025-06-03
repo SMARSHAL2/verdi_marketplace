@@ -1,0 +1,44 @@
+{% load static %}
+{% include "includes/head.html" %}
+
+<footer class="verdi-footer">
+  <div class="verdi-footer-container container">
+    <div class="row justify-content-between align-items-start">
+      
+      <!-- Marca e Slogan -->
+      <div class="col-md-4 text-center text-md-start verdi-footer-bloco">
+            <div class="verdi-footer-identidade">
+                <img src="{% static 'img/verdi-logo/verdi-only-logo.png' %}"alt="Logo Verdi" class="verdi-footer-logo">
+                <span class="verdi-footer-titulo">Verdi Market</span>
+            </div>
+            <p class="verdi-footer-texto">Conectando você à agricultura familiar.</p>
+            <p class="verdi-footer-copy">© 2025 Todos os direitos reservados.</p>
+      </div>
+
+      <!-- Links úteis -->
+      <div class="col-md-4 verdi-footer-bloco">
+        <h6 class="verdi-footer-subtitulo">Links Rápidos</h6>
+        <ul class="verdi-footer-links list-unstyled">
+          <li><a href="#" class="verdi-footer-link">Sobre nós</a></li>
+          <li><a href="#" class="verdi-footer-link">Suporte</a></li>
+          <li><a href="#" class="verdi-footer-link">Política de Privacidade</a></li>
+          <li><a href="#" class="verdi-footer-link">Termos de Uso</a></li>
+        </ul>
+      </div>
+
+      <!-- Contato -->
+      <div class="col-md-3 text-md-end text-center verdi-footer-bloco">
+        <h6 class="verdi-footer-subtitulo">Contato</h6>
+        <p class="verdi-footer-contato">Email: contato@verdimarket.com</p>
+        <p class="verdi-footer-contato">WhatsApp: (00) 91234-5678</p>
+        <div class="verdi-footer-redes d-flex justify-content-md-end justify-content-center gap-3 mt-2">
+          <a href="#" class="verdi-footer-icon"><i class="bi bi-facebook"></i></a>
+          <a href="#" class="verdi-footer-icon"><i class="bi bi-instagram"></i></a>
+          <a href="#" class="verdi-footer-icon"><i class="bi bi-twitter-x"></i></a>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</footer>
+

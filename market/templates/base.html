@@ -1,0 +1,36 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    {% include "includes/head.html" %}
+</head>
+<body class="verdi-body">
+
+    {% include "includes/menu.html" %}
+    {% include "includes/sidebar.html" %}
+
+
+    <main class="verdi-main container py-5">
+        {% block content %}{% endblock %}
+    </main>
+
+    {% include "includes/footer.html" %}
+
+
+    
+    
+    <script src="{% static 'js/market/includes/sidebar.js' %}"></script>
+    <script src="{% static 'js/market/includes/menu-busca.js' %}"></script>
+    <script src="{% static 'js/carrinho/carrinho_resumo.js' %}"></script>
+    <script src="{% static 'js/tscontrol.js' %}"></script>
+    <script src="{% static 'js/flatpickr.js' %}"></script>
+    <script src="{% static 'js/sweetalert2.js' %}"></script>
+
+    <link href="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/css/tom-select.bootstrap5.min.css" rel="stylesheet">
+    <script src="https://cdn.jsdelivr.net/npm/tom-select@2.3.1/dist/js/tom-select.complete.min.js"></script>
+
+
+    {% block scripts %}
+    {% endblock %}
+</body>
+</html>

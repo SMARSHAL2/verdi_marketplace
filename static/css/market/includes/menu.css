@@ -1,0 +1,266 @@
+/* 🌿 Header geral */
+.verdi-header {
+  position: relative;
+  top: 0;
+  left: 0;
+  width: 100%;
+  z-index: 9999;
+  background-color: var(--verdi-fundo2);
+  color: var(--verdi-branco);
+  padding: 0 1.5rem;
+  height: 180px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+/* 🌿 Parte de cima do header */
+.verdi-header-top {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    height: 100%;
+}
+
+/* 🌿 Logo */
+.verdi-logo {
+    display: flex;
+    align-items: center;
+    text-decoration: none;
+    height: 100%;
+    overflow: hidden;
+    z-index: 8000;
+}
+
+.verdi-logo-img {
+    height: 200px;
+    max-height: 200px;
+    object-fit: contain;
+    align-self: center;
+    margin-left: 60px;
+    margin-top: 10px;
+}
+
+/* 🌿 Navegação */
+.verdi-nav {
+    display: flex;
+    align-items: center;
+}
+
+/* 🌿 Links padrões */
+.verdi-link {
+    color: var(--verdi-branco);
+    font-family: var(--Inter);
+    text-decoration: none;
+    font-weight: var(--font-semibold);
+    margin-right: 1rem;
+    transition: color 0.3s ease;
+}
+
+.verdi-link:hover {
+    color: var(--verdi-destaque);
+    text-decoration: none;
+}
+
+/* 🌿 Botões */
+.verdi-btn {
+    background-color: var(--verdi-branco);
+    color: var(--verdi-primaria);
+    font-family: var(--Inter);
+    font-weight: var(--font-semibold);
+    border: none;
+    padding: 8px 12px;
+    border-radius: 5px;
+    text-decoration: none;
+    margin-right: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.verdi-btn:hover {
+    background-color: var(--verdi-terciaria);
+    color: var(--verdi-branco);
+    font-weight: var(--font-semibold);
+}
+
+/* 🌿 Botão contorno (ex: Sair) */
+.verdi-btn-outline {
+    border: 1px solid white;
+    background-color: transparent;
+    color: white;
+    padding: 6px 12px;
+    border-radius: 5px;
+    font-weight: 500;
+    text-decoration: none;
+    transition: background-color 0.3s ease;
+}
+
+.verdi-btn-outline:hover {
+    background-color: rgba(255, 255, 255, 0.15);
+}
+
+.verdi-menu {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.verdi-menu .verdi-link {
+    margin-right: 1rem;
+    color: var(--verdi-branco);
+    font-family: var(--Inter);
+    text-decoration: none;
+    font-weight: var(--font-regular);
+    position: relative;
+    transition: color 0.3s ease;
+}
+
+.verdi-menu .verdi-link::after {
+    content: '';
+    position: absolute;
+    bottom: -2px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: var(--verdi-branco);
+    transition: width 0.3s ease;
+    border-radius: 10px;
+}
+
+.verdi-menu .verdi-link:hover::after {
+    width: 100%;
+}
+
+/* 🌿 Navegação principal */
+.verdi-nav {
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
+    gap: 1.2rem;
+}
+
+/* 🌿 Saudação do usuário */
+.verdi-menu-usuario-logado {
+    color: var(--verdi-branco);
+    font-family: var(--Poppins);
+    font-weight: var(--font-regular);
+    font-size: 1rem;
+    white-space: nowrap;
+    margin: 0;
+}
+
+/* 🌿 Botão lateral (menu toggle) */
+.verdi-menu-toggle {
+    background: transparent;
+    border: none;
+    padding: 0.4rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.verdi-menu-toggle i {
+    color: var(--verdi-branco);
+    font-size: 42px !important;
+    font-weight: var(--font-semibold);
+    transition: transform 0.25s;
+    margin-right: 60px;
+}
+
+.verdi-menu-toggle:hover,
+.verdi-menu-toggle:focus {
+    transform: scale(1.08);
+}
+
+
+/* 🌿 Contêiner de busca + carrinho */
+.verdi-menu-busca-carrinho-container {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    max-width: 900px;
+    margin-left: 200px !important;
+}
+
+/* 🌿 Wrapper de input com ícone de lupa sobreposto */
+.verdi-menu-form-busca-wrapper {
+    position: relative;
+    flex: 1;
+}
+
+/* 🌿 Estilização do input */
+.verdi-menu-form-busca-input {
+    padding-right: 40px;
+    width: 100%;
+    height: 42px;
+    padding-left: 1rem;
+    padding-right: 1rem;
+    font-size: 1rem;
+    border: 1px solid var(--verdi-borda-input);
+    border-radius: 8px;
+    background-color: var(--verdi-branco);
+    color: var(--verdi-texto-label);
+    transition: border-color 0.3s ease;
+    outline: none !important;
+}
+
+.verdi-menu-form-busca-input:hover,
+.verdi-menu-form-busca-input:focus {
+    border-color: var(--verdi-branco);
+    box-shadow: 0 0 15px 6px rgba(255, 255, 255, 0.1);
+    outline: none !important;
+}
+
+/* 🌿 Ícone de busca dentro do input */
+.verdi-menu-busca-icon {
+    position: absolute;
+    top: 50%;
+    right: 12px;
+    transform: translateY(-50%);
+    cursor: pointer;
+    color: var(--verdi-primaria);
+    font-size: 1.2rem;
+}
+
+/* 🌿 Botão carrinho */
+.verdi-menu-botao-carrinho {
+    background: transparent;
+    border: none;
+    padding: 0.4rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--verdi-branco);
+    font-weight: var(--font-regular);
+    font-family: var(--Inter);
+    text-decoration: none;
+    transition: transform 0.25s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+.verdi-carrinho-texto {
+    opacity: 0;
+    transform: translateX(-10px);
+    transition: all 0.4s ease;
+    display: inline-block;
+    font-size: 1rem;
+    white-space: nowrap;
+}
+
+/* 🌿 Animação ao passar o mouse no botão */
+.verdi-menu-botao-carrinho:hover .verdi-carrinho-texto {
+    opacity: 1;
+    transform: translateX(0);
+    transform: scale(1.08);
+}
+
+.verdi-menu-botao-carrinho i {
+    color: var(--verdi-branco);
+    font-size: 26px !important;
+    font-weight: var(--font-semibold);
+    transition: transform 0.25s;
+    margin-right: 10px;
+}

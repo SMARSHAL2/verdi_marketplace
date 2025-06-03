@@ -1,0 +1,95 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block content %}
+    <h1 class="anunciar-titulo">Anunciar Novo Produto</h1>
+<div class="anunciar-container">
+
+
+    <form method="post" enctype="multipart/form-data" class="anunciar-formulario">
+        {% csrf_token %}
+
+        <!-- 🌿 Nome do Produto -->
+        <div class="anunciar-form-floating">
+            <input type="text" name="nome" id="nome" class="anunciar-form-control" placeholder="Nome do Produto" required>
+            <label for="nome">Nome do Produto</label>
+        </div>
+
+        <!-- 🌿 Descrição -->
+        <div class="anunciar-form-floating">
+            <textarea name="descricao" id="descricao" class="anunciar-form-control" placeholder="Descrição" style="height: 100px;" required></textarea>
+            <label for="descricao">Descrição</label>
+        </div>
+
+        <!-- 🌿 Preço -->
+        <div class="anunciar-form-floating">
+            <input type="number" step="0.01" name="preco" id="preco" class="anunciar-form-control" placeholder="Preço" required>
+            <label for="preco">Preço (R$)</label>
+        </div>
+
+        <!-- 🌿 Estoque -->
+        <div class="anunciar-form-floating">
+            <input type="number" name="estoque" id="estoque" class="anunciar-form-control" placeholder="Quantidade em estoque" required>
+            <label for="estoque">Estoque</label>
+        </div>
+
+        <!-- 🌿 Imagem -->
+        <div class="upload-container">
+            <input type="file" id="anunciar-upload-input" class="upload-hidden-input" name="imagem" accept="image/*">
+
+            <label class="upload-label-box" for="anunciar-upload-input">
+                <div class="upload-icon-main"><i class="bi bi-cloud-upload"></i></div>
+                <div class="upload-main-text">Cadastrar Imagem do Produto</div>
+                <div class="upload-main-text"><strong>Clique para carregar</strong> ou arraste e solte</div>
+                <div class="upload-subtext">SVG, PNG, JPG, GIF (máx. 800×400px)</div>
+            </label>
+
+            <div class="upload-display mt-3" id="upload-display" style="display: none;">
+                <div class="upload-file-info">
+                    <div class="upload-icon-circle"><i class="bi bi-file-earmark"></i></div>
+                    <div class="upload-details">
+                        <span id="file-name">nome.ext</span>
+                        <small id="file-size">0 KB</small>
+                    </div>
+                </div>
+                <div class="upload-actions">
+                    <div class="upload-success-icon"><i class="bi bi-check-circle-fill text-success"></i></div>
+                    <div class="upload-delete-icon">
+                        <button type="button" class="delete-button" onclick="removerUpload()">
+                            <i class="bi bi-trash3"></i>
+                        </button>
+                    </div>
+                </div>
+                <div class="upload-progress-container">
+                    <div class="upload-progress-wrapper">
+                        <div class="upload-progress-bar" id="progress-bar"></div>
+                    </div>
+                    <div class="progress-percent" id="progress-percent">0%</div>
+                </div>
+            </div>
+        </div>
+
+
+        <!-- 🌿 Categoria -->
+        <div class="anunciar-select-form-floating">
+            <select name="categoria" id="categoria" class="anunciar-form-select" required>
+                <option value="" disabled selected hidden>Selecione a categoria</option>
+                {% for categoria in categorias %}
+                    <option value="{{ categoria.id }}">{{ categoria.nome }}</option>
+                {% endfor %}
+            </select>
+            <label for="categoria">Categoria</label>
+                <i class="bi bi-chevron-down suporte-select-icon"></i>
+        </div>
+
+        <!-- 🌿 Botão -->
+        <button type="submit" class="btn btn-success anunciar-botao">Cadastrar Produto</button>
+    </form>
+</div>
+
+{% endblock %}
+
+
+{% block scripts %}
+  <script src="{% static 'js/produto/cadastro_imagem_produto.js' %}"></script>
+{% endblock %}

@@ -1,0 +1,101 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Cadastrar Usuário{% endblock %}
+
+{% block content %}
+
+<h1 class="suporte-titulo">Cadastro de Novo Usuário</h1>
+
+<div class="suporte-cadastro-container">
+
+
+    {% if messages %}
+    {% for message in messages %}
+    <div class="alert alert-{{ message.tags }} alert-dismissible fade show suporte-alerta" role="alert">
+        {{ message }}
+        <button type="button" class="btn-close" data-bs-dismiss="alert"></button>
+    </div>
+    {% endfor %}
+    {% endif %}
+
+    <form class="suporte-form-cadastro" method="post" action="{% url 'cadastrar_usuario_suporte' %}">
+        {% csrf_token %}
+
+        <!-- 🌿 Nome e Email -->
+        <div class="suporte-cadastro">
+            <div class="col-md-6 mb-3 suporte-form-floating">
+                <input type="text" name="nome" id="nome" class="suporte-form-control" placeholder="Digite nome completo" required>
+                <label for="nome">Nome</label>
+            </div>
+            <div class="col-md-6 mb-3 suporte-form-floating">
+                <input type="email" name="email" id="email" class="suporte-form-control" placeholder="Digite o E-mail" required>
+                <label for="email">Email</label>
+            </div>
+        </div>
+
+        <!-- 🌿 Senha com ícone de olho -->
+        <div class="suporte-cadastro-senha">
+            <div class="col-md-10 suporte-form-floating">
+                <input type="text" name="senha" id="senha" class="suporte-form-control" placeholder="Digite ou gere uma senha" required>
+                <label for="senha">Senha</label>
+                <a type="button" class="verdi-eye-toggle" onclick="toggleSenha()" id="toggleSenhaBtn">
+                    <i id="iconeOlho" class="bi bi-eye"></i>
+                </a>
+            </div>
+
+            <div class="col-md-2 d-flex gap-2 mt-2">
+                <button type="button" class="btn suporte-outline-secondary" onclick="gerarSenha()"><i class="bi bi-shuffle"></i>Gerar senha</button>
+            </div>
+        </div>
+
+        <!-- 🌿 Tipo de usuário -->
+        <div class="suporte-form-floating">
+            <select name="tipo" id="tipo" class="suporte-form-select" required>
+                <option value="" disabled selected hidden>Selecione o tipo de usuário</option>
+                <option value="comum">Usuário comum</option>
+                <option value="vendedor">Agricultor / Vendedor</option>
+                <option value="suporte">Suporte</option>
+            </select>
+            <label for="tipo">Tipo de Usuário</label>
+                <i class="bi bi-chevron-down suporte-select-icon"></i>
+        </div>
+
+        <!-- 🌿 Botões -->
+        <div class="suporte-botao">
+            <a href="{% url 'painel_suporte' %}" class="btn suporte-botao-voltar"><i
+                    class="bi bi-arrow-left"></i>Voltar</a>
+            <button type="submit" class="btn btn-success suporte-botao-submit"><i
+                    class="bi bi-plus-lg"></i>Cadastrar</button>
+        </div>
+    </form>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    function gerarSenha() {
+        const caracteres = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789@#$%&!';
+        let senha = '';
+        for (let i = 0; i < 10; i++) {
+            senha += caracteres[Math.floor(Math.random() * caracteres.length)];
+        }
+        document.getElementById('senha').value = senha;
+    }
+
+    function toggleSenha() {
+        const campo = document.getElementById('senha');
+        const icone = document.getElementById('iconeOlho');
+
+        if (campo.type === 'password') {
+            campo.type = 'text';
+            icone.classList.remove('bi-eye');
+            icone.classList.add('bi-eye-slash');
+        } else {
+            campo.type = 'password';
+            icone.classList.remove('bi-eye-slash');
+            icone.classList.add('bi-eye');
+        }
+    }
+</script>
+{% endblock %}

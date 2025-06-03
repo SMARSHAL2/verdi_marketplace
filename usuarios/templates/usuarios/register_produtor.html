@@ -1,0 +1,22 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    {% include "includes/head.html" %}
+</head>
+<body class="register-body produtor-body">
+    <div class="container register-container produtor-container mt-5">
+        <h2 class="register-title produtor-title mb-4">Cadastro de Produtor</h2>
+        <form method="post" class="register-form produtor-form">
+            {% csrf_token %}
+            <div class="register-form-fields produtor-fields">
+                {{ form.as_p }}
+            </div>
+            <button type="submit" class="btn btn-success register-submit-btn produtor-submit-btn">Cadastrar como Produtor</button>
+        </form>
+        <p class="register-login-link produtor-link mt-3">
+            Já tem conta? <a href="{% url 'login' %}">Entrar</a>
+        </p>
+    </div>
+</body>
+</html>

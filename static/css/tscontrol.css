@@ -1,0 +1,153 @@
+/* 🌿 Wrapper geral */
+.tsinput-form-floating {
+  position: relative;
+  flex: 1;
+  margin-bottom: 2rem;
+}
+
+/* 🌿 Label fixo no topo */
+.tsinput-form-floating label {
+  position: absolute;
+  top: 8px;
+  left: 10px;
+  font-size: 14px;
+  font-family: var(--Inter);
+  font-weight: var(--font-regular);
+  color: var(--verdi-texto-label, #6C737F);
+  pointer-events: none;
+  background: white;
+  padding: 0 4px;
+  z-index: 5;
+}
+
+/* 🌿 Estilo principal do campo (Tom Select) */
+.ts-control {
+  background-color: transparent;
+  border: 1px solid var(--verdi-borda-input, #c2e0f4);
+  border-radius: 8px !important;
+  padding: 30px 14px 8px !important;
+  font-size: 1rem;
+  font-family: var(--Inter);
+  font-weight: var(--font-regular);
+  color: var(--verdi-texto-label, #6C737F);
+  height: 72px !important;
+  box-shadow: none;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease;
+  box-shadow: none !important;
+}
+
+/* 🌿 Garante que nenhuma borda azul apareça em nenhum estado */
+.ts-wrapper.has-focus .ts-control {
+  border-color: var(--verdi-primaria) !important;
+  box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.2) !important;
+  outline: none !important;
+}
+
+/* 🌿 Input de digitação interno */
+.ts-control input {
+  margin: 0 !important;
+  padding: 0 !important;
+  padding-left: 0.25rem;
+  font-size: 1rem;
+  height: 35px !important;
+  line-height: 1.5rem !important;
+  flex: 1 0 150px;
+  outline: none !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* 🌿 Placeholder simulado usando data-placeholder */
+.ts-control::before {
+  content: attr(data-placeholder);
+  position: absolute !important;
+  left: 14px !important;
+  bottom: 10px !important;
+  font-family: var(--Inter) !important;
+  font-weight: var(--font-regular) !important;
+  font-size: 14px;
+  color: var(--verdi-texto-label) !important;
+  pointer-events: none !important;
+}
+
+/* 🌿 Esconde quando tem item */
+.ts-wrapper.has-items .ts-control::before {
+  content: '';
+}
+
+/* 🌿 Itens selecionados (tags) */
+.ts-control .item {
+  background-color: var(--verdi-primaria);
+  color: white;
+  border-radius: 6px;
+  padding: 6px 10px;
+  margin: 4px 6px 4px 0;
+  font-size: 0.9rem;
+}
+
+/* 🌿 Botão de remover item */
+.ts-control .item .remove {
+  margin-left: 6px;
+  color: rgba(255, 255, 255, 0.8);
+  font-weight: bold;
+}
+
+/* 🌿 Dropdown menu */
+.ts-dropdown {
+  background-color: white;
+  border: 1px solid var(--verdi-borda-input, #c2e0f4);
+  border-radius: 8px;
+  font-family: var(--Inter);
+  font-size: 0.95rem;
+  color: var(--verdi-texto-label, #6C737F);
+  z-index: 10000;
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.08);
+}
+
+/* 🌿 Itens do dropdown */
+.ts-dropdown .option {
+  padding: 10px 14px;
+  cursor: pointer;
+}
+
+.ts-dropdown .option:hover,
+.ts-dropdown .option.active {
+  background-color: var(--verdi-primaria);
+  color: white;
+}
+
+/* 🌿 Estado desabilitado */
+.ts-control.disabled {
+  background-color: #f5f5f5;
+  cursor: not-allowed;
+  opacity: 0.6;
+}
+
+/* 🌿 Ícone de carregamento (single mode apenas) */
+.ts-wrapper.single.loading .ts-control::after {
+  content: '⏳';
+  position: absolute;
+  right: 12px;
+  top: 16px;
+  font-size: 1rem;
+  color: #999;
+}
+
+.ts-control .item .remove {
+  margin-left: 6px !important;
+  color: rgba(255, 255, 255, 0.8) !important;
+  font-weight: bold !important;
+  cursor: pointer !important;
+  border-left: none !important;
+  padding-left: 0 !important;
+  box-shadow: none !important;
+}
+
+.ts-control .item {
+  background-color: var(--verdi-primaria) !important;
+  color: var(--verdi-branco)!important;
+  gap: 4px !important;
+}

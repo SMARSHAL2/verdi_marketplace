@@ -1,0 +1,53 @@
+{% extends "base.html" %}
+
+{% load descontos %}
+
+{% block title %}Bem-vindo ao Verdi Market{% endblock %}
+
+{% block content %}
+<header class="verdi-hero bg-success text-white p-5 text-center">
+    <h1>Bem-vindo ao Verdi Market</h1>
+    <p>Conectando você aos melhores produtos da agricultura familiar</p>
+</header>
+
+<main class="mainpage-container container my-5">
+    <h2 class="mainpage-titulo mb-4">Produtos em Destaque</h2>
+    <div class="row mainpage-produtos-lista">
+        {% for produto in produtos %}
+        <div class="col-md-3 mb-4 mainpage-card-produto">
+            <div class="card h-100 mainpage-card">
+                <img src="{{ produto.imagem.url }}" class="card-img-top mainpage-card-img" alt="{{ produto.nome }}">
+                <div class="card-body mainpage-card-body">
+                    <h5 class="card-title mainpage-card-title">{{ produto.nome }}</h5>
+                    <p class="card-text mainpage-card-text">{{ produto.descricao|truncatewords:10 }}</p>
+
+                    {% with preco_final=produto.preco_com_desconto %}
+                        {% if preco_final < produto.preco %}
+                            <p class="text-muted small">
+                                <s>R$ {{ produto.preco }}</s>
+                            </p>
+                            <p class="fw-bold text-success mainpage-preco">
+                                R$ {{ preco_final|floatformat:2 }}
+                            </p>
+                            <span class="badge bg-danger mainpage-desconto-badge">
+                                -{{ produto.preco|percentual_desconto:preco_final }}%
+                            </span>
+                        {% else %}
+                            <p class="fw-bold text-success mainpage-preco">R$ {{ produto.preco }}</p>
+                        {% endif %}
+                    {% endwith %}
+
+
+                    <span class="badge bg-secondary mainpage-categoria">{{ produto.categoria.nome }}</span>
+                </div>
+                <div class="card-footer small text-muted mainpage-card-footer">
+                    Vendido por: {{ produto.vendedor.nome }}
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</main>
+
+
+{% endblock %}

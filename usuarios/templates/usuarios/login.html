@@ -1,0 +1,24 @@
+{% load static %}  {# necessário para o {% static %} funcionar no head.html #}
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    {% include "includes/head.html" %}
+</head>
+<body class="login-body">
+
+    <div class="container login-container mt-5">
+        <h2 class="login-title mb-4">Entrar</h2>
+
+        <form method="post" class="login-form">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit" class="btn btn-success login-submit-btn">Entrar</button>
+        </form>
+
+        <p class="login-register-link mt-3">
+            Não tem conta? <a href="{% url 'register' %}">Cadastre-se</a>
+        </p>
+    </div>
+
+</body>
+</html>

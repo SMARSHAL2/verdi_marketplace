@@ -1,0 +1,52 @@
+{% load static %}
+{% include "includes/head.html" %}
+<aside id="verdiSidebar" class="verdi-sidebar">
+    <div class="verdi-sidebar-header">
+        <button class="verdi-sidebar-close" id="fecharSidebar" aria-label="Fechar menu">
+            <i class="bi bi-x-lg"></i>
+        </button>
+    </div>
+    
+    <div class="img-sidebar">  
+            {% if user.is_authenticated and user.is_suporte %}
+                <a href="{% url 'painel_suporte' %}" class="verdi-logo">
+                    <img src="{% static 'img/verdi-logo/verdi-logo-suporte.png' %}" alt="Verdi Market Suporte" class="verdi-logo-img">
+                </a>
+            {% else %}
+                <a href="{% url 'home' %}" class="verdi-logo">
+                    <img src="{% static 'img/verdi-logo/verdi-logo-branco.png' %}" alt="Verdi Market Suporte" class="verdi-logo-img">
+                </a>            
+            {% endif %}
+    </div>
+
+    {% if user.is_authenticated %}
+        <nav class="verdi-sidebar-nav">
+                    
+            
+            
+                {% if not user.is_suporte  %}
+                <a href="{% url 'perfil' %}" class="verdi-link-sidebar"><i class="bi bi-person-bounding-box"></i>Meu Perfil</a>
+                {% endif %}
+
+                {% if user.is_produtor %}
+                    <a href="" class="verdi-link-sidebar"><i class="bi bi-shop-window"></i>Minha Página</a>
+                    <a href="{% url 'anunciar_produto' %}" class="verdi-link-sidebar mt-2"><i class="bi bi-tag"></i>Anunciar</a>
+                {% endif %}
+
+                {% if user.is_authenticated and user.is_suporte %}
+                    <a href="{% url 'painel_suporte' %}" class="verdi-link-sidebar"><i class="bi bi-headset"></i>Painel de Suporte</a>
+                    <a href="{% url 'suporte_cadastro_usuario' %}" class="verdi-link-sidebar"><i class="bi bi-person-plus"></i>Cadastrar Usuario</a>
+                    <a href="{% url 'desconto_sistema' %}" class="verdi-link-sidebar"><i class="bi bi-percent"></i>Cadastrar Desconto do Sistema</a>
+                {% endif %}
+
+
+
+        </nav>
+
+        <div class="verdi-sidebar-sair-container">
+            <a href="{% url 'logout' %}" class="verdi-link-sidebar">
+                <i class="bi bi-box-arrow-left"></i>Sair
+            </a>
+        </div>
+    {% endif %}
+</aside>

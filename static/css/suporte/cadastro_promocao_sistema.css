@@ -1,0 +1,203 @@
+.suporte-titulo {
+  color: var(--verdi-primaria);
+  font-family: var(--Poppins);
+  font-weight: var(--font-semibold);
+  font-size: 2.5rem;
+  margin-bottom: 4rem;
+  margin-top: 2rem;
+}
+
+/* 🌿 Container principal de cadastro */
+.suporte-desconto-container {
+  background: #ffffff;
+  border: 1px solid var(--verdi-secundaria, #c2e0f4);
+  border-radius: 12px;
+  padding: 3rem;
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+  max-width: 1400px;
+  width: 100%;
+  margin: 0 auto;
+}
+
+/* 🌿 Alerta de mensagens */
+.suporte-alerta {
+  font-size: 0.95rem;
+  padding: 0.8rem 1.2rem;
+  margin-bottom: 1.5rem;
+  border-radius: 6px;
+}
+
+/* 🌿 Grupos de campos */
+.suporte-cadastro {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  margin-bottom: 0.5rem;
+}
+
+.suporte-cadastro-senha {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 1rem;
+  align-items: flex-end;
+  margin-bottom: 2rem;
+}
+
+/* 🌿 Inputs e selects */
+.descsistema-form-floating {
+  flex: 1;
+  position: relative;
+  margin-bottom: 2rem;
+}
+
+.descsistema-form-floating label {
+  position: absolute;
+  color: var(--verdi-texto-label, #6C737F);
+  left: 0;
+  margin-left: 13px;
+  margin-top: 8px;
+  font-family: var(--Inter);
+  font-weight: var(--font-regular);
+  font-size: 14px;
+}
+
+.descsistema-form-control,
+.descsistema-form-select {
+  width: 100%;
+  font-size: 1rem;
+  border: 1px solid var(--verdi-borda-input);
+  border-radius: 8px;
+  background-color: transparent;
+  color: var(--verdi-texto-label);
+  transition: border-color 0.3s ease;
+  height: 72px;
+  padding-top: 25px;
+  padding-left: 13px
+}
+
+.descsistema-form-control label {
+  color: var(--verdi-text-input)
+}
+
+.descsistema-form-select {
+  padding-left: 12px;
+  font-family: var(--Inter);
+  font-weight: var(--font-regular);
+  font-size: 14px;
+  color: var(--verdi-texto-label, #6C737F);
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  padding-right: 2.5rem;
+}
+
+/* 🌿 Ícone substituto da seta */
+.descsistema-select-icon {
+  position: absolute;
+  right: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  pointer-events: none;
+  font-size: 1rem;
+  color: var(--verdi-texto-label, #6C737F);
+}
+
+.descsistema-form-control:focus,
+.descsistema-form-select:focus {
+  border-color: var(--verdi-primaria);
+  box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.1);
+  outline: none;
+}
+
+.descsistema-form-control::placeholder,
+.descsistema-form-select::placeholder {
+  font-family: var(--Inter);
+  font-weight: var(--font-regular);
+  font-size: 14px;
+  color: var(--verdi-texto-label, #6C737F);
+}
+
+.descsistema-form-floating i{
+  position: absolute;
+  right: 16px;
+  top: 50% !important;
+  transform: translateY(-50%);
+  color: var(--verdi-texto-label);
+  font-size: 1.2rem;
+  pointer-events: none;
+}
+
+/* 🌿 Wrapper geral */
+.descsistema-form-check {
+  display: flex !important;
+  align-items: center !important;
+  gap: 10px !important;
+  margin-right: 10px;
+  margin-bottom: 2rem !important;
+  position: relative !important;
+}
+
+/* 🌿 Estilo do checkbox */
+.form-check-input {
+  width: 20px !important;
+  height: 20px !important;
+  border: 2px solid var(--verdi-borda-input, #c2e0f4) !important;
+  border-radius: 4px !important;
+  background-color: white !important;
+  transition: background-color 0.2s, border-color 0.2s !important;
+  margin-top: 0 !important;
+  cursor: pointer !important;
+}
+
+/* 🌿 Checkbox marcado */
+.form-check-input:checked {
+  background-color: var(--verdi-primaria) !important;
+  border-color: var(--verdi-primaria);
+  box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.1);
+  outline: none;
+}
+
+.form-check-input:focus {
+  border-color: var(--verdi-primaria);
+  box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.1);
+  outline: none;
+}
+
+/* 🌿 Label */
+.form-check-label {
+  font-family: var(--Inter);
+  font-size: 14px !important;
+  color: var(--verdi-texto-label, #6C737F) !important;
+  cursor: pointer !important;
+}
+
+/* 🌿 Botões */
+.suporte-desconto-botao {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+}
+
+.promocao-subtitulos-text {
+  display: flex !important;
+  align-items: center !important;
+  gap: 2rem !important;
+  width: 100% !important;
+  margin-top: 6rem;
+}
+.promocao-subtitulos-text h3{
+  color: var(--verdi-primaria);
+  font-family: var(--Poppins);
+  font-weight: var(--font-semibold);
+  font-size: 1.7rem;
+  margin-top: 2rem;
+}
+.promocao-subtitulos-text h3:first-child {
+  margin-right: 2rem !important;
+}
+
+.promocao-subtitulos-text h3:last-child {
+  margin-left: auto !important;
+}

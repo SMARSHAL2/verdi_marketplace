@@ -1,0 +1,136 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}Perfil do Usuário{% endblock %}
+
+
+{% block content %}
+<div class="container mt-5 perfil-container">
+    <h2 class="mb-4 text-center perfil-title">Perfil do Usuário</h2>
+
+    {% if messages %}
+        {% for message in messages %}
+            <div class="alert alert-{{ message.tags }} alert-dismissible fade show perfil-alert" role="alert">
+                {{ message }}
+                <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Fechar"></button>
+            </div>
+        {% endfor %}
+    {% endif %}
+
+    <div class="row">
+        <!-- 🔐 Dados Pessoais -->
+        <div class="col-md-6 perfil-dados-pessoais">
+            <h5>Dados Pessoais</h5>
+            <ul class="list-group mb-3 perfil-dados-lista">
+                <li class="list-group-item perfil-dado"><strong>Nome:</strong> {{ user.nome }}</li>
+                <li class="list-group-item perfil-dado"><strong>Email:</strong> {{ user.email }}</li>
+                <li class="list-group-item perfil-dado"><strong>CPF:</strong> {{ user.cpf }}</li>
+                <li class="list-group-item perfil-dado"><strong>Data de nascimento:</strong> {{ user.nascimento|date:"d/m/Y" }}</li>
+                <li class="list-group-item perfil-dado"><strong>Telefone:</strong> {{ user.telefone }}</li>
+            </ul>
+            <button class="btn btn-outline-primary perfil-editar-btn" data-bs-toggle="modal" data-bs-target="#modalEditarPerfil">
+                Editar Dados
+            </button>
+        </div>
+
+        <!-- 🏡 Endereços -->
+        <div class="col-md-6 perfil-enderecos">
+            <h5>Endereços</h5>
+            {% for endereco in user.enderecos.all %}
+                <div class="card mb-2 p-3 endereco-card">
+                    <div class="d-flex justify-content-between">
+                        <div class="endereco-info">
+                            <p class="mb-1">
+                                {{ endereco.rua }}, {{ endereco.numero }} - {{ endereco.bairro }}, {{ endereco.cidade }}/{{ endereco.estado }}
+                                <br><small>{{ endereco.cep }}{% if endereco.complemento %} - {{ endereco.complemento }}{% endif %}</small>
+                            </p>
+                            {% if endereco.principal %}
+                                <span class="badge bg-success endereco-principal">Endereço Principal</span>
+                            {% else %}
+                                <a href="{% url 'tornar_endereco_principal' endereco.id %}" class="btn btn-sm btn-outline-success endereco-tornar-principal">Tornar principal</a>
+                            {% endif %}
+                        </div>
+                        <div>
+                            <a href="#" class="btn btn-sm btn-outline-primary endereco-editar-btn" data-bs-toggle="modal" data-bs-target="#modalEditarEndereco{{ endereco.id }}">✎</a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Modal Editar Endereço -->
+                <div class="modal fade endereco-modal" id="modalEditarEndereco{{ endereco.id }}" tabindex="-1">
+                    <div class="modal-dialog modal-lg">
+                        <div class="modal-content">
+                            <form method="post" action="{% url 'editar_endereco' endereco.id %}">
+                                {% csrf_token %}
+                                <div class="modal-header">
+                                    <h5 class="modal-title endereco-modal-title">Editar Endereço</h5>
+                                    <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+                                </div>
+                                <div class="modal-body endereco-modal-body">
+                                    {{ endereco.form.as_p }}
+                                </div>
+                                <div class="modal-footer endereco-modal-footer">
+                                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                                    <button type="submit" class="btn btn-success">Salvar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            {% empty %}
+                <p>Nenhum endereço cadastrado.</p>
+            {% endfor %}
+
+            <button class="btn btn-primary mt-3 endereco-adicionar-btn" data-bs-toggle="modal" data-bs-target="#modalAdicionarEndereco">Adicionar Endereço</button>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Editar Perfil -->
+<div class="modal fade perfil-modal" id="modalEditarPerfil" tabindex="-1">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <form method="post" action="{% url 'editar_perfil' %}">
+        {% csrf_token %}
+        <div class="modal-header">
+          <h5 class="modal-title perfil-modal-title">Editar Perfil</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body perfil-modal-body">
+          {{ perfil_form.as_p }}
+        </div>
+        <div class="modal-footer perfil-modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-success">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+
+<!-- Modal Adicionar Endereço -->
+<div class="modal fade endereco-modal" id="modalAdicionarEndereco" tabindex="-1">
+  <div class="modal-dialog modal-lg">
+    <div class="modal-content">
+      <form method="post" action="{% url 'adicionar_endereco' %}">
+        {% csrf_token %}
+        <div class="modal-header">
+          <h5 class="modal-title endereco-modal-title">Novo Endereço</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal"></button>
+        </div>
+        <div class="modal-body endereco-modal-body">
+          {{ endereco_form.as_p }}
+        </div>
+        <div class="modal-footer endereco-modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+          <button type="submit" class="btn btn-success">Salvar</button>
+        </div>
+      </form>
+    </div>
+  </div>
+</div>
+{% endblock %}
+
+{% block scripts %}
+<script src="{% static 'js/perfil/perfil_modais.js' %}"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+{% endblock %}

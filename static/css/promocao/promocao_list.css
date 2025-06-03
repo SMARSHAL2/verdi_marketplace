@@ -1,0 +1,126 @@
+/* 🌿 Wrapper horizontal fixo e alinhado */
+.suporte-promocoes-wrapper {
+  display: flex !important;
+  justify-content: space-between !important;
+  align-items: stretch !important;
+  gap: 2rem !important;
+  flex-wrap: nowrap !important;
+  margin-top: 3rem !important;
+  min-height: 420px !important;
+}
+
+/* 🌿 Coluna da promoção vigente */
+.promocao-vigente-container {
+  flex: 1 1 50% !important;
+  display: flex !important;
+}
+
+/* 🌿 Card da promoção vigente */
+.promocao-vigente-card {
+  position: relative !important;
+  background: #f8f8f8 !important;
+  border: 1px solid var(--verdi-borda-input, #c2e0f4) !important;
+  border-radius: 10px !important;
+  padding: 2rem !important;
+  flex: 1 1 auto !important;
+  width: 100% !important;
+  max-height: 260px !important;
+  overflow-y: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  justify-content: space-between !important;
+}
+
+/* 🌿 Se não houver promoção, estilo neutro */
+.promocao-vigente-card.vazio {
+  opacity: 0.5;
+  justify-content: center !important;
+  align-items: center !important;
+  text-align: center;
+}
+
+/* 🌿 Checkbox customizado */
+.check-promocao-vigente-card,
+.checkbox-ativar-promocao {
+  position: absolute !important;
+  top: 12px !important;
+  right: 12px !important;
+  width: 20px !important;
+  height: 20px !important;
+  border: 2px solid var(--verdi-borda-input, #c2e0f4) !important;
+  border-radius: 4px !important;
+  background-color: white !important;
+  cursor: pointer !important;
+  appearance: none !important;
+  -webkit-appearance: none !important;
+  transition: all 0.2s ease-in-out !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  font-size: 16px !important;
+}
+
+/* 🌿 Check marcado */
+.check-promocao-vigente-card:checked::before,
+.checkbox-ativar-promocao:checked::before{
+  font-family: "bootstrap-icons" !important;
+  content: "\f633";
+  color: white;
+  font-size: 14px;
+  font-weight: bold;
+  margin-top: 2px;
+}
+
+.check-promocao-vigente-card:checked,
+.checkbox-ativar-promocao:checked {
+  background-color: var(--verdi-primaria) !important;
+  border-color: var(--verdi-primaria) !important;
+  box-shadow: 0 0 0 0.2rem rgba(46, 125, 50, 0.2) !important;
+}
+
+/* 🌿 Coluna com rolagem */
+.tabela-promocoes-cards-scroll {
+  max-height: 800px !important;
+  overflow-y: auto !important;
+  display: flex !important;
+  flex-direction: column !important;
+  gap: 1.2rem !important;
+  padding-right: 0.5rem !important;
+  flex: 1 1 50% !important;
+}
+
+.card-promocao-scroll {
+  background-color: #ffffff !important;
+  border: 1px solid var(--verdi-borda-input, #c2e0f4) !important;
+  border-radius: 10px !important;
+  padding: 1.5rem !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.06) !important;
+  font-size: 0.95rem !important;
+  font-family: var(--Inter) !important;
+  color: var(--verdi-texto-label, #444) !important;
+  max-height: 260px !important;
+  overflow-y: none!important;
+}
+
+/* 🌿 Botão de edição fixo no canto superior direito */
+.promocao-btn-editar {
+  position: absolute !important;
+  top: 10px !important;
+  right: 40px !important;
+  background-color: transparent !important;
+  color: var(--verdi-primaria) !important;
+  font-size: 1.2rem !important;
+  opacity: 0;
+  transition: opacity 0.3s ease !important;
+  z-index: 5 !important;
+}
+
+/* Mostra o botão só quando passa o mouse no card */
+.card-promocao-scroll:hover .promocao-btn-editar {
+  opacity: 1 !important;
+}
+
+/* Garante que o card tenha position relative para posicionar o botão */
+.card-promocao-scroll {
+  position: relative !important;
+}
