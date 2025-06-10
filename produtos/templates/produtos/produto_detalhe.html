@@ -1,0 +1,150 @@
+{% extends "base.html" %}
+{% load descontos %}
+
+{% block title %}{{ produto.nome }} | Verdi Market{% endblock %}
+
+{% block content %}
+<div class="container my-5 produto-detalhe-container">
+  <div class="row">
+    <div class="col-md-6">
+      <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}" class="img-fluid rounded shadow-sm produto-detalhe-img">
+    </div>
+    <div class="col-md-6">
+      <h2 class="produto-detalhe-titulo">{{ produto.nome }}</h2>
+
+        {% with nota=media_nota|floatformat:1 %}
+            {% for i in "12345"|make_list %}
+                {% if forloop.counter <= media_nota|floatformat:0 %}
+                <span class="text-warning">★</span>
+                {% else %}
+                <span class="text-muted">★</span>
+                {% endif %}
+            {% endfor %}
+            <small class="text-muted">({{ nota }} de 5)</small>
+        {% endwith %}
+
+
+      <p class="text-muted">Categoria: <span class="badge bg-secondary">{{ produto.categoria.nome }}</span></p>
+
+      {% with preco_final=produto.preco_com_desconto %}
+        {% if preco_final < produto.preco %}
+          <p class="text-muted"><s>R$ {{ produto.preco }}</s></p>
+          <h4 class="text-success fw-bold">R$ {{ preco_final|floatformat:2 }}</h4>
+          <span class="badge bg-danger">Desconto: -{{ produto.preco|percentual_desconto:preco_final }}%</span>
+        {% else %}
+          <h4 class="text-success fw-bold">R$ {{ produto.preco }}</h4>
+        {% endif %}
+      {% endwith %}
+
+      <p class="mt-4">{{ produto.descricao }}</p>
+
+      <p class="small text-muted">Estoque disponível: {{ produto.estoque }}</p>
+      <p class="small text-muted">Vendido por: <strong>{{ produto.vendedor.nome }}</strong></p>
+
+      <form method="post" action="{% url 'adicionar_ao_carrinho' produto.id %}">
+        {% csrf_token %}
+        <div class="d-flex align-items-center my-3">
+          <label for="quantidade" class="me-2">Quantidade:</label>
+          <input type="number" name="quantidade" id="quantidade" class="form-control w-25" min="1" max="{{ produto.estoque }}" value="1">
+        </div>
+        <button type="submit" class="btn btn-success">Adicionar ao Carrinho</button>
+      </form>
+
+      <a href="{% url 'home' %}" class="btn btn-outline-secondary mt-3">← Voltar para a loja</a>
+    </div>
+  </div>
+</div>
+
+<hr class="my-5">
+<h4 class="mb-4">Produtos Relacionados</h4>
+<div class="row">
+  {% for rel in relacionados %}
+    <div class="col-md-3 mb-4">
+      <a href="{% url 'produto_detalhe' rel.id %}" class="text-decoration-none text-dark">
+        <div class="card h-100">
+          <img src="{{ rel.imagem.url }}" class="card-img-top" alt="{{ rel.nome }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ rel.nome }}</h5>
+            {% with preco_rel=rel.preco_com_desconto %}
+              {% if preco_rel < rel.preco %}
+                <p class="text-muted small"><s>R$ {{ rel.preco }}</s></p>
+                <p class="fw-bold text-success">R$ {{ preco_rel|floatformat:2 }}</p>
+              {% else %}
+                <p class="fw-bold text-success">R$ {{ rel.preco }}</p>
+              {% endif %}
+            {% endwith %}
+          </div>
+        </div>
+      </a>
+    </div>
+  {% empty %}
+    <p class="text-muted">Nenhum produto relacionado encontrado.</p>
+  {% endfor %}
+</div>
+
+<hr class="my-5">
+<h4 class="mb-4">Outros Produtos</h4>
+<div class="row">
+  {% for outro in outros_produtos %}
+    <div class="col-md-3 mb-4">
+      <a href="{% url 'produto_detalhe' outro.id %}" class="text-decoration-none text-dark">
+        <div class="card h-100">
+          <img src="{{ outro.imagem.url }}" class="card-img-top" alt="{{ outro.nome }}">
+          <div class="card-body">
+            <h5 class="card-title">{{ outro.nome }}</h5>
+            {% with preco_outro=outro.preco_com_desconto %}
+              {% if preco_outro < outro.preco %}
+                <p class="text-muted small"><s>R$ {{ outro.preco }}</s></p>
+                <p class="fw-bold text-success">R$ {{ preco_outro|floatformat:2 }}</p>
+              {% else %}
+                <p class="fw-bold text-success">R$ {{ outro.preco }}</p>
+              {% endif %}
+            {% endwith %}
+          </div>
+        </div>
+      </a>
+    </div>
+  {% empty %}
+    <p class="text-muted">Nenhum outro produto disponível.</p>
+  {% endfor %}
+</div>
+
+<hr class="my-5">
+<h4>Avaliações</h4>
+
+{% if user.is_authenticated %}
+  <form method="post">
+    {% csrf_token %}
+    <div class="mb-3">
+      <label class="form-label">Sua nota:</label>
+      {{ form_avaliacao.nota }}
+    </div>
+    <div class="mb-3">
+      {{ form_avaliacao.comentario }}
+    </div>
+    <button type="submit" name="avaliar" class="btn btn-success">Enviar Avaliação</button>
+  </form>
+{% else %}
+  <p><a href="{% url 'login' %}">Faça login</a> para avaliar este produto.</p>
+{% endif %}
+
+<hr class="my-4">
+{% for avaliacao in avaliacoes %}
+  <div class="mb-3 p-3 border rounded">
+    <strong>{{ avaliacao.usuario.nome }}</strong>
+    {% if avaliacao.nota %}
+      <span class="text-warning ms-2">
+        {% for i in "12345"|slice:":avaliacao.nota"|make_list %}★{% endfor %}
+      </span>
+    {% endif %}
+    <br>
+    <small class="text-muted">{{ avaliacao.criado_em|date:"d/m/Y H:i" }}</small>
+    {% if avaliacao.comentario %}
+      <p class="mt-2">{{ avaliacao.comentario }}</p>
+    {% endif %}
+  </div>
+{% empty %}
+  <p class="text-muted">Este produto ainda não possui avaliações.</p>
+{% endfor %}
+
+{% endblock %}

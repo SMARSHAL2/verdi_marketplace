@@ -1,7 +1,7 @@
 from django.contrib.auth.decorators import login_required
 from django.template.loader import render_to_string
 from django.http import JsonResponse
-from django.shortcuts import render
+from django.shortcuts import render, redirect, get_object_or_404
 from produtos.models import ItemCarrinho
 from django.conf import settings
 
@@ -37,3 +37,19 @@ def resumo_carrinho(request):
         'desconto_sistema': desconto_sistema,
     }
     return render(request, 'carrinho/resumo_carrinho.html', context)
+
+@login_required
+def adicionar_ao_carrinho(request, produto_id):
+    produto = get_object_or_404(Produto, id=produto_id)
+    quantidade = int(request.POST.get('quantidade', 1))
+
+    item, criado = ItemCarrinho.objects.get_or_create(
+        usuario=request.user,
+        produto=produto,
+        defaults={'quantidade': quantidade}
+    )
+    if not criado:
+        item.quantidade += quantidade
+        item.save()
+
+    return redirect('home')

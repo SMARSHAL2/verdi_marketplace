@@ -49,3 +49,17 @@ class ItemCarrinho(models.Model):
     def total_item(self, desconto_sistema=0.0):
         preco_final = self.produto.preco_com_desconto(desconto_sistema)
         return preco_final * self.quantidade
+
+class Avaliacao(models.Model):
+    produto = models.ForeignKey(Produto, on_delete=models.CASCADE, related_name='avaliacoes')
+    usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
+    nota = models.IntegerField(
+        choices=[(i, str(i)) for i in range(1, 6)],
+        null=True,
+        blank=True 
+    )
+    comentario = models.TextField(blank=True)
+    criado_em = models.DateTimeField(auto_now_add=True)
+
+    def __str__(self):
+        return f"{self.usuario.nome} avaliou {self.produto.nome}"

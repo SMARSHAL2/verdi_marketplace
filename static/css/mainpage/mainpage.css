@@ -1,0 +1,205 @@
+/* 🌿 Seção Hero */
+.mainpage-hero {
+    background-color: var(--verdi-primaria);
+    color: var(--verdi-branco);
+    padding: 4rem 2rem;
+    text-align: center;
+}
+
+/* 🌿 Container principal */
+.mainpage-container {
+    max-width: 1900px;
+    margin: 3rem auto;
+    padding: 0 1rem;
+    font-family: var(--Poppins);
+}
+
+/* 🌿 Título da seção */
+.mainpage-section-title {
+    font-size: 2rem;
+    font-weight: var(--font-bold);
+    color: var(--verdi-primaria);
+    border-bottom: 2px solid var(--verdi-secundaria);
+    padding-bottom: 0.5rem;
+    margin-bottom: 2rem;
+}
+
+/* 🌿 Lista de produtos */
+.mainpage-produto-lista {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 2rem;
+}
+
+/* 🌿 Card do produto */
+.mainpage-produto-card {
+    text-decoration: none;
+    min-width: 400px;
+    max-width: 400px;
+    flex: 0 0 auto;
+}
+
+/* 🌿 Link do card */
+.mainpage-link {
+    color: var(--verdi-texto);
+    text-decoration: none;
+}
+
+.mainpage-link:hover {
+    text-decoration: none;
+}
+
+/* 🌿 Cartão */
+.mainpage-card {
+    border: 1px solid var(--verdi-borda-input);
+    border-radius: 10px;
+    overflow: hidden;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    background-color: var(--verdi-branco);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    height: 100%;
+    min-height: 410px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+.mainpage-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 20px rgba(46, 125, 50, 0.15);
+}
+
+/* 🌿 Imagem */
+.mainpage-card-img {
+    height: 180px;
+    object-fit: cover;
+    width: 100%;
+}
+
+/* 🌿 Corpo do card */
+.mainpage-card-body {
+    padding: 1rem;
+    flex-grow: 1;
+    max-width: 400px;
+}
+
+.mainpage-card-title {
+    font-size: 1.1rem;
+    font-weight: var(--font-semibold);
+    margin-bottom: 0.5rem;
+}
+
+.mainpage-card-descricao {
+  font-size: 0.9rem;
+  color: var(--verdi-subtexto);
+  margin-bottom: 0.75rem;
+  min-height: 40px;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+/* 🌿 Preços */
+.mainpage-preco {
+    font-family: var(--Rubik);
+    font-weight: var(--font-bold);
+    color: var(--verdi-primaria);
+    font-size: 1.1rem;
+    margin-bottom: 0.25rem;
+}
+
+.mainpage-preco-antigo {
+    font-size: 0.85rem;
+    color: var(--verdi-subtexto);
+    text-decoration: line-through;
+    margin-bottom: 0;
+}
+
+/* 🌿 Badge de desconto */
+.mainpage-desconto-badge {
+    background-color: var(--verdi-erro);
+    color: var(--verdi-branco);
+    font-size: 0.75rem;
+    padding: 0.3em 0.6em;
+    border-radius: 4px;
+    margin-top: 0.3rem;
+    display: inline-block;
+}
+
+/* 🌿 Badge de categoria */
+.mainpage-categoria {
+    background-color: var(--verdi-secundaria-clara);
+    color: var(--verdi-terciaria);
+    font-size: 0.75rem;
+    padding: 0.3em 0.6em;
+    border-radius: 4px;
+    font-weight: var(--font-semibold);
+    display: inline-block;
+    margin-top: 0.5rem;
+}
+
+/* 🌿 Rodapé do card */
+.mainpage-card-footer {
+    background-color: var(--verdi-fundo);
+    color: var(--verdi-subtexto);
+    font-size: 0.75rem;
+    padding: 0.75rem 1rem;
+    border-top: 1px solid var(--verdi-borda-input);
+}
+
+/* 🌿 Carrossel Wrapper */
+.mainpage-carousel-wrapper {
+    position: relative;
+    overflow: hidden;
+    padding: 1rem 0;
+}
+
+/* 🌿 Carrossel Container */
+.mainpage-carousel {
+    display: flex;
+    overflow-x: auto;
+    scroll-behavior: smooth;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+/* 🌿 Ocultar barra de rolagem */
+.mainpage-carousel::-webkit-scrollbar {
+    display: none;
+}
+
+.mainpage-carousel {
+    -ms-overflow-style: none;
+    scrollbar-width: none;
+}
+
+/* 🌿 Card do produto no carrossel */
+.mainpage-produto-card {
+    min-width: 250px;
+    flex: 0 0 auto;
+}
+
+/* 🌿 Botões de navegação */
+.mainpage-carousel-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: var(--verdi-primaria);
+    border: none;
+    color: white;
+    font-size: 2rem;
+    padding: 0.5rem 1rem;
+    cursor: pointer;
+    z-index: 2;
+    border-radius: 50%;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.mainpage-carousel-btn.left {
+    left: 0.5rem;
+}
+
+.mainpage-carousel-btn.right {
+    right: 0.5rem;
+}

@@ -1,53 +1,88 @@
 {% extends "base.html" %}
-
 {% load descontos %}
 
 {% block title %}Bem-vindo ao Verdi Market{% endblock %}
 
 {% block content %}
-<header class="verdi-hero bg-success text-white p-5 text-center">
+
+<header class="mainpage-hero">
     <h1>Bem-vindo ao Verdi Market</h1>
     <p>Conectando você aos melhores produtos da agricultura familiar</p>
 </header>
 
-<main class="mainpage-container container my-5">
-    <h2 class="mainpage-titulo mb-4">Produtos em Destaque</h2>
-    <div class="row mainpage-produtos-lista">
+<main class="mainpage-container">
+    <h2 class="mainpage-section-title">Produtos em Destaque</h2>
+    <div class="mainpage-carousel-wrapper">
+    <button class="mainpage-carousel-btn left" id="btn-left" onclick="scrollCarousel(-1)" style="display: none;">‹</button>
+
+    <div class="mainpage-carousel" id="produtoCarousel">
         {% for produto in produtos %}
-        <div class="col-md-3 mb-4 mainpage-card-produto">
-            <div class="card h-100 mainpage-card">
-                <img src="{{ produto.imagem.url }}" class="card-img-top mainpage-card-img" alt="{{ produto.nome }}">
-                <div class="card-body mainpage-card-body">
-                    <h5 class="card-title mainpage-card-title">{{ produto.nome }}</h5>
-                    <p class="card-text mainpage-card-text">{{ produto.descricao|truncatewords:10 }}</p>
+        <div class="mainpage-produto-card">
+            <a href="{% url 'produto_detalhe' produto.id %}" class="mainpage-link">
+                <div class="mainpage-card">
+                    <img src="{{ produto.imagem.url }}" class="mainpage-card-img" alt="{{ produto.nome }}">
+                    <div class="mainpage-card-body">
+                        <h5 class="mainpage-card-title">{{ produto.nome }}</h5>
+                        <p class="mainpage-card-descricao">{{ produto.descricao|truncatewords:10 }}</p>
 
-                    {% with preco_final=produto.preco_com_desconto %}
-                        {% if preco_final < produto.preco %}
-                            <p class="text-muted small">
-                                <s>R$ {{ produto.preco }}</s>
-                            </p>
-                            <p class="fw-bold text-success mainpage-preco">
-                                R$ {{ preco_final|floatformat:2 }}
-                            </p>
-                            <span class="badge bg-danger mainpage-desconto-badge">
-                                -{{ produto.preco|percentual_desconto:preco_final }}%
-                            </span>
-                        {% else %}
-                            <p class="fw-bold text-success mainpage-preco">R$ {{ produto.preco }}</p>
-                        {% endif %}
-                    {% endwith %}
+                        {% with preco_final=produto.preco_com_desconto %}
+                            {% if preco_final < produto.preco %}
+                                <p class="mainpage-preco-antigo">R$ {{ produto.preco }}</p>
+                                <p class="mainpage-preco">R$ {{ preco_final|floatformat:2 }}</p>
+                                <span class="mainpage-desconto-badge">
+                                    -{{ produto.preco|percentual_desconto:preco_final }}%
+                                </span>
+                            {% else %}
+                                <p class="mainpage-preco">R$ {{ produto.preco }}</p>
+                            {% endif %}
+                        {% endwith %}
 
-
-                    <span class="badge bg-secondary mainpage-categoria">{{ produto.categoria.nome }}</span>
+                        <span class="mainpage-categoria">{{ produto.categoria.nome }}</span>
+                    </div>
+                    <div class="mainpage-card-footer">
+                        Vendido por: {{ produto.vendedor.nome }}
+                    </div>
                 </div>
-                <div class="card-footer small text-muted mainpage-card-footer">
-                    Vendido por: {{ produto.vendedor.nome }}
-                </div>
-            </div>
+            </a>
         </div>
         {% endfor %}
     </div>
+
+    <button class="mainpage-carousel-btn right" onclick="scrollCarousel(1)">›</button>
+
+
+    </div>
 </main>
 
+{% endblock %}
+
+{% block scripts %}
+<script>
+  const carousel = document.getElementById('produtoCarousel');
+  const btnLeft = document.getElementById('btn-left');
+
+  function scrollCarousel(direction) {
+    const scrollAmount = 300;
+    carousel.scrollBy({ left: direction * scrollAmount, behavior: 'smooth' });
+  }
+
+  function updateCarouselButtons() {
+    // Se o scroll da esquerda for maior que zero, mostra a seta
+    if (carousel.scrollLeft > 10) {
+      btnLeft.style.display = 'block';
+    } else {
+      btnLeft.style.display = 'none';
+    }
+  }
+
+  // Atualiza ao rolar
+  carousel.addEventListener('scroll', updateCarouselButtons);
+
+  // Garante atualização após scroll programático
+  carousel.addEventListener('wheel', updateCarouselButtons);
+
+  // Também quando a página termina de carregar
+  window.addEventListener('load', updateCarouselButtons);
+</script>
 
 {% endblock %}

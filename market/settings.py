@@ -81,9 +81,9 @@ WSGI_APPLICATION = 'market.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'verdi_market',
+        'NAME': 'VerdiDB',
         'USER': 'postgres',
-        'PASSWORD': '18122003',
+        'PASSWORD': 'PosTgR3$',
         'HOST': 'localhost',
         'PORT': '5432',
     }
