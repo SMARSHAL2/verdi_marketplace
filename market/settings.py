@@ -19,12 +19,11 @@ SECRET_KEY = 'django-insecure-c597b7(wyqht%=e4x_v_@yduj(j!dat2lwukx1@d2rjxv6k&!o
 MEDIA_URL = '/media/'
 MEDIA_ROOT = BASE_DIR / 'media'
 
-
-
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
 ALLOWED_HOSTS = []
+EMAIL_BACKEND = 'django.core.mail.backends.console.EmailBackend'
 
 
 # Application definition
@@ -38,8 +37,10 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'mainpage',
     'usuarios',
+    'carrinho', 
     'produtos',
-    'suporte',       
+    'suporte', 
+    'pedidos',      
     'rest_framework', 
 ]
 
@@ -83,7 +84,7 @@ DATABASES = {
         'ENGINE': 'django.db.backends.postgresql',
         'NAME': 'VerdiDB',
         'USER': 'postgres',
-        'PASSWORD': 'PosTgR3$',
+        'PASSWORD': 'postgres',
         'HOST': 'localhost',
         'PORT': '5432',
     }

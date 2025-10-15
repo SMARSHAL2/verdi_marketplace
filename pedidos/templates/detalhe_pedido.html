@@ -1,0 +1,26 @@
+<h2>Detalhes do Pedido #{{ pedido.id }}</h2>
+<p>Status: {{ pedido.get_status_display }}</p>
+<p>Data: {{ pedido.criado_em }}</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Produto</th>
+            <th>Quantidade</th>
+            <th>Preço unitário</th>
+            <th>Total</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for item in pedido.itens.all %}
+        <tr>
+            <td>{{ item.produto.nome }}</td>
+            <td>{{ item.quantidade }}</td>
+            <td>R$ {{ item.produto.preco }}</td>
+            <td>R$ {{ item.total_item }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+<p>Total do pedido: R$ {{ pedido.total }}</p>

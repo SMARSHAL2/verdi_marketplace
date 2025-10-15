@@ -14,10 +14,13 @@ class Produto(models.Model):
     nome = models.CharField(max_length=200)
     descricao = models.TextField()
     preco = models.DecimalField(max_digits=10, decimal_places=2)
-    desconto_produtor = models.DecimalField(max_digits=5, decimal_places=2, default=0.0, help_text='Desconto dado pelo produtor (%)')
+    desconto_produtor = models.DecimalField(
+        max_digits=5, decimal_places=2, default=0.0,
+        help_text='Desconto dado pelo produtor (%)'
+    )
     estoque = models.PositiveIntegerField()
     imagem = models.ImageField(upload_to='produtos/')
-    categoria = models.ForeignKey(Categoria, on_delete=models.SET_NULL, null=True, blank=True)
+    categoria = models.ForeignKey('Categoria', on_delete=models.SET_NULL, null=True, blank=True)
     criado_em = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
@@ -35,11 +38,9 @@ class Produto(models.Model):
             .order_by('-data_inicio')
             .first()
         )
-
-        desconto_sistema = promocao.desconto if promocao else 0
-        desconto_aplicado = max(self.desconto_produtor, desconto_sistema)
-
-        return self.preco * (1 - desconto_aplicado / 100)
+        desconto_sistema = float(promocao.desconto) if promocao else 0.0
+        desconto_aplicado = max(float(self.desconto_produtor), desconto_sistema)
+        return float(self.preco) * (1 - desconto_aplicado / 100)
 
 class ItemCarrinho(models.Model):
     usuario = models.ForeignKey(Usuario, on_delete=models.CASCADE)
@@ -47,8 +48,8 @@ class ItemCarrinho(models.Model):
     quantidade = models.PositiveIntegerField(default=1)
 
     def total_item(self, desconto_sistema=0.0):
-        preco_final = self.produto.preco_com_desconto(desconto_sistema)
-        return preco_final * self.quantidade
+        preco_unitario = self.produto.preco_com_desconto()  # usa o método do Produto sem parâmetros
+        return preco_unitario * self.quantidade
 
 class Avaliacao(models.Model):
     produto = models.ForeignKey(Produto, on_delete=models.CASCADE, related_name='avaliacoes')
